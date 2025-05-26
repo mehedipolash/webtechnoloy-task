@@ -7,17 +7,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
+
 // LOGIN HANDLER (via AJAX)
 if (isset($_POST['action']) && $_POST['action'] === 'login') {
     $email = $conn->real_escape_string($_POST['email']);
     $pass = $_POST['pass'];
 
     $result = $conn->query("SELECT * FROM user WHERE Email='$email'");
+     //check a match with user table
 
-    if ($result && $result->num_rows === 1) {
+    if ($result && $result->num_rows === 1) {  //Confirms a matching user was found (exactly 1 result).
         
         $row = $result->fetch_assoc();
- 
+        //This line fetches the next (or only) row from the $result set as an associative array 
 
         //updated
         if (password_verify($pass, $row['Password'])) {
@@ -38,7 +41,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'login') {
 }
 
 // CONFIRMATION HANDLER (final step to save user)
-if (isset($_POST['confirm'])) {
+if (isset($_POST['confirm']))
+ {
     $fullname = $_POST['fullname'];
     $email = $_POST['email'];
     $password = $_POST['password']; // already hashed
@@ -51,6 +55,8 @@ if (isset($_POST['confirm'])) {
     $stmt = $conn->prepare("INSERT INTO user (Fullname, Email, Password, Dob, Country, Gender, Opinion, Color) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 $stmt->bind_param("ssssssss", $fullname, $email, $password, $dob, $country, $gender, $opinion, $color);
 
+//ssssssss" tells MySQL the data types of the 8 variables
+//? symbols are placeholders — they don’t have values yet.
 
 
     if ($stmt->execute()) {

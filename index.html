@@ -43,6 +43,7 @@
       margin-top: 3px;
     }
   </style>
+
 </head>
 
 
@@ -345,8 +346,10 @@
          background-color: #A9B5DF; padding: 20px;">
           <h3 style="margin-left: 120px;">LOGIN</h3>
           <div style="flex-direction: column;">
-            Username: <input style="width: 180px; padding:5px;border-radius: 10px;" type="email" name="email" id="login_email" required><br><br>
-            Password: <input style="width: 180px;padding: 5px;border-radius: 10px;" type="password" name="pass" id="login_password" required>
+
+            Username: <input style="width: 180px; padding:5px;border-radius: 5px;" type="email" name="email" id="login_email" required><br><br>
+
+            Password: <input style="width: 180px;padding: 5px;border-radius: 5px;" type="password" name="pass" id="login_password" required>
           </div>
           <br><br>
           <button style="margin-left: 120px; padding: 10px 20px; background: linear-gradient(to right, #006666, #33cccc);
@@ -418,7 +421,7 @@
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
                           background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 8px;
                           box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; z-index: 2;">
-          <h3 style="padding: 10px; margin: 0; color: tomato;">Please login first</h3>
+          <h3 style="font-weight:900;   padding: 10px; margin: 0; color: #0652DD;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Please login first</h3>
         </div>
       </div>
       
@@ -537,6 +540,9 @@
         const pass = document.getElementById('login_password').value;
 
         const formData = new FormData();
+
+         //empty form data object for takes key value pair.it's built in .
+
         formData.append('action', 'login');
         formData.append('email', email);
         formData.append('pass', pass);
